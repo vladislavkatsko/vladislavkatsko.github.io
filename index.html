@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Портфолио</title>
+    <title>Тренировки от Владимира</title>
     <link rel="stylesheet" href="style.css">
     <script src="config.js"></script>
 </head>
@@ -12,24 +12,33 @@
         <h1 id="site-name"></h1>
         <p id="site-subtitle"></p>
     </header>
-    <section class="gallery" id="gallery-container"></section>
+    <main>
+        <section id="programs" class="programs-section"></section>
+    </main>
     <footer>
-        <p id="contact-info"></p>
+        <p id="contact-email"></p>
+        <p id="footer"></p>
     </footer>
-
     <script>
         function renderSite() {
             const config = window.siteConfig;
             document.getElementById("site-name").textContent = config.name;
             document.getElementById("site-subtitle").textContent = config.subtitle;
-            document.getElementById("contact-info").textContent = `Контакты: ${config.email}`;
+            document.getElementById("contact-email").textContent = "Связь: " + config.email;
+            document.getElementById("footer").textContent = config.footer;
 
-            const gallery = document.getElementById("gallery-container");
-            config.gallery.forEach(src => {
-                const img = document.createElement("img");
-                img.src = src;
-                img.alt = "Фото";
-                gallery.appendChild(img);
+            const programsContainer = document.getElementById("programs");
+            config.programs.forEach(program => {
+                const div = document.createElement("div");
+                div.className = "program";
+                div.innerHTML = `
+                    <img src="${program.image}" alt="${program.title}">
+                    <h3>${program.title}</h3>
+                    <p><strong>Продолжительность:</strong> ${program.duration}</p>
+                    <p><strong>Цена:</strong> ${program.price}</p>
+                    <p>${program.description}</p>
+                `;
+                programsContainer.appendChild(div);
             });
         }
     </script>
