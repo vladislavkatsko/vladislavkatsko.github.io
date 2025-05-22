@@ -1,0 +1,32 @@
+body {
+    font-family: sans-serif;
+    background: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+header {
+    padding: 2em 1em;
+}
+.gallery {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 1em;
+}
+.gallery img {
+    width: 300px;
+    height: auto;
+    border: 2px solid #fff;
+    transition: transform 0.3s ease;
+}
+.gallery img:hover {
+    transform: scale(1.05);
+}
+footer {
+    padding: 2em 1em;
+    font-size: 0.9em;
+    color: #888;
+}
