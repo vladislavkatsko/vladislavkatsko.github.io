@@ -3,21 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Владислав Катсько — Портфолио</title>
+    <title>Портфолио</title>
     <link rel="stylesheet" href="style.css">
+    <script src="config.js"></script>
 </head>
-<body>
+<body onload="renderSite()">
     <header>
-        <h1>Владислав Катсько</h1>
-        <p>Фотограф / Визуальный художник</p>
+        <h1 id="site-name"></h1>
+        <p id="site-subtitle"></p>
     </header>
-    <section class="gallery">
-        <img src="images/photo1.jpg" alt="Фото 1">
-        <img src="images/photo2.jpg" alt="Фото 2">
-        <img src="images/photo3.jpg" alt="Фото 3">
-    </section>
+    <section class="gallery" id="gallery-container"></section>
     <footer>
-        <p>Контакты: example@email.com</p>
+        <p id="contact-info"></p>
     </footer>
+
+    <script>
+        function renderSite() {
+            const config = window.siteConfig;
+            document.getElementById("site-name").textContent = config.name;
+            document.getElementById("site-subtitle").textContent = config.subtitle;
+            document.getElementById("contact-info").textContent = `Контакты: ${config.email}`;
+
+            const gallery = document.getElementById("gallery-container");
+            config.gallery.forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.alt = "Фото";
+                gallery.appendChild(img);
+            });
+        }
+    </script>
 </body>
 </html>
